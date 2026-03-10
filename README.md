@@ -11,6 +11,19 @@ This package is published to PyPI as `st-chatbar-media` and imported in Python a
 
 ---
 
+## Why I created this
+
+Streamlit's built-in chat UI is great for text; however, I couldn't find a single control that combined all of the inputs I needed in one clean chatbar:
+
+- Text input (multiline with word wrap)
+- Audio capture (tap to record, tap to stop)
+- Photo attach with both file upload and camera capture
+- A camera selector when multiple cameras are available
+
+I looked for existing options, including custom Streamlit components and couldn't find one component that supported all of these capabilities together in a cohesive toolbar. I pulled ideas from several sources and combined them into a unified, reusable chatbar: **st-chatbar-media**. The goal is to make multimodal input feel native in Streamlit chat apps without stitching together multiple widgets or awkward layouts.
+
+---
+
 ## Install
 
 ```bash
@@ -33,9 +46,9 @@ st.session_state.setdefault("events", [])
 result = chatbar_media(
     key="chatbar",
     data={
-        "placeholder": "Type a message…  (Ctrl+Enter to send)",
+        "placeholder": "Type a message, record audio or add a photo…",
         "disabled": False,
-        "responsive": True,
+        "responsive": False,
     },
 )
 
@@ -50,7 +63,7 @@ st.write(st.session_state.events[-1] if st.session_state.events else "No events 
 
 ## How it works (Streamlit Components v2)
 
-This package uses **Streamlit Components v2** (`st.components.v2.component`) on the Python side and the **v2 frontend renderer** (`@streamlit/component-v2-lib`) on the TypeScript side.
+This package uses then newer **Streamlit Components v2** (`st.components.v2.component`) which has several advantages over the prior components framework.
 
 Key points:
 
@@ -160,7 +173,7 @@ streamlit run examples/demo_app.py
 
 ## License
 
-MIT (or update this section to match your repository license).
+MIT
 
 ---
 
