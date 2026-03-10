@@ -9,7 +9,7 @@ A Streamlit custom component that provides a polished, multimodal chat input bar
 
 This package is published to PyPI as `st-chatbar-media` and imported in Python as `chatbar_media`.
 
-<img src="assets/chatbar-demo.png" alt="st-chatbar-media demo" width="700" />
+<img src="assets/chatbar-demo-images.png" alt="st-chatbar-media demo" width="700" />
 
 ---
 
@@ -35,6 +35,8 @@ pip install st-chatbar-media
 ---
 
 ## Quick start
+
+The quickstart is a simple framework to test the chatbar and analyze how inputs are handled (they are echoed back to the user for review). It is not designed to be a functional chat app. 
 
 ```python
 import streamlit as st
