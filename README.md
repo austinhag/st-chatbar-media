@@ -9,6 +9,8 @@ A Streamlit custom component that provides a polished, multimodal chat input bar
 
 This package is published to PyPI as `st-chatbar-media` and imported in Python as `chatbar_media`.
 
+<img src="assets/chatbar-demo.png" alt="st-chatbar-media demo" width="700" />
+
 ---
 
 ## Why I created this

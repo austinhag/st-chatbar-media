@@ -10,7 +10,7 @@ result = chatbar_media(
     key="chatbar",
     data={"placeholder": "Type, record audio or add a photo...",
           "disabled": False,
-          "responsive": True}
+          "responsive": False}
 )
 
 payload = result.get("submit") if result else None

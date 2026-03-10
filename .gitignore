@@ -25,3 +25,4 @@ chatbar_media/frontend/build-v2/
 **/node_modules/
 dist/
 *.egg-info/
+twine.ps1
