@@ -15,7 +15,7 @@ This package is published to PyPI as `st-chatbar-media` and imported in Python a
 
 ## Why I created this
 
-Streamlit's built-in chat UI is great for text; however, I couldn't find a single control that combined all of the inputs I needed in one clean chatbar:
+Streamlit's built-in chat UI is great for text and audio; however, I couldn't find a single control that combined all of the inputs I needed in one clean chatbar:
 
 - Text input (multiline with word wrap)
 - Audio capture (tap to record, tap to stop)
