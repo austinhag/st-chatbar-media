@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "st-chatbar-media"
+version = "0.1.0"
+description = "A Streamlit chat input bar with text, audio, and photo upload/camera support."
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "Austin Hagerty"}]
+dependencies = ["streamlit>=1.40"]
+
+[project.urls]
+Homepage = "https://github.com/austinhag/st-chatbar-media"
+Repository = "https://github.com/austinhag/st-chatbar-media"
+Issues = "https://github.com/austinhag/st-chatbar-media/issues"
+
+[tool.setuptools]
+packages = ["st_chatbar_media"]
+
+[tool.setuptools.package-data]
+st_chatbar_media = ["frontend/build-v2/*.js", "frontend/build-v2/*.css"]

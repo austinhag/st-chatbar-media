@@ -1,0 +1,30 @@
+{
+  "name": "chatbar-media-frontend",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build:v2": "esbuild src/index.tsx --bundle --format=esm --platform=browser --outfile=build-v2/chatbar_media.js --loader:.tsx=tsx --loader:.ts=ts --loader:.css=text",
+    "sync:pkg": "node ../scripts/sync_frontend.mjs",
+    "build:pkg": "npm run build:v2 && npm run sync:pkg",
+    "clean": "rimraf build-v2",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^6.1.5",
+    "@mui/material": "^6.1.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-media-recorder": "^1.7.0"
+  },
+  "devDependencies": {
+    "@streamlit/component-v2-lib": "",
+    "@types/react": "^18.2.66",
+    "@types/react-dom": "^18.2.22",
+    "esbuild": "^0.21.5",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.5.4"
+  }
+}
