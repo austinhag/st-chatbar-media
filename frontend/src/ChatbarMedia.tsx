@@ -43,6 +43,9 @@ type ChatbarMediaData = {
   responsive?: boolean
 }
 
+// Stamp the CSS version into the bundle so stale cached style tags are always replaced
+const STYLE_VERSION = String(cssText.length)
+
 function ensureStyles(mountEl: HTMLElement | ShadowRoot) {
   const STYLE_ID = "chatbar-media-inline-style"
 
@@ -54,10 +57,15 @@ function ensureStyles(mountEl: HTMLElement | ShadowRoot) {
       ? root.getElementById?.(STYLE_ID) ?? root.querySelector(`#${STYLE_ID}`)
       : (document.getElementById(STYLE_ID) as HTMLElement | null)
 
-  if (existing) return
+  // Replace if found but stale (different build)
+  if (existing) {
+    if (existing.getAttribute("data-v") === STYLE_VERSION) return
+    existing.remove()
+  }
 
   const style = document.createElement("style")
   style.id = STYLE_ID
+  style.setAttribute("data-v", STYLE_VERSION)
   style.textContent = cssText
 
   if (root instanceof ShadowRoot) {
@@ -94,6 +102,140 @@ function floatTo16BitPCM(float32Array: Float32Array): Int16Array {
 
   return output
 }
+
+// ── Streamlit theme detection ─────────────────────────────────────────────────
+// Streamlit's light/dark default palette
+const THEME_LIGHT = { primary: "#ff4b4b", bg: "#ffffff", secondaryBg: "#f0f2f6", text: "#31333f" }
+const THEME_DARK  = { primary: "#ff4b4b", bg: "#0e1117", secondaryBg: "#262730", text: "#fafafa"  }
+type CBTheme = typeof THEME_LIGHT
+
+function getCSSVar(name: string): string {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim()
+}
+
+function parseLuminance(colorStr: string): number | null {
+  const m = colorStr.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:\s*,\s*([\d.]+))?/)
+  if (!m) return null
+  const alpha = m[4] !== undefined ? parseFloat(m[4]) : 1
+  if (alpha < 0.05) return null  // skip transparent
+  return 0.299 * +m[1] + 0.587 * +m[2] + 0.114 * +m[3]
+}
+
+function getBaseMode(): "dark" | "light" {
+  const log: Record<string, unknown> = {}
+
+  // 1. data-theme attribute
+  const dataTheme =
+    document.documentElement.getAttribute("data-theme") ??
+    document.querySelector("[data-testid='stApp']")?.getAttribute("data-theme")
+  log["data-theme"] = dataTheme
+  if (dataTheme === "dark") return "dark"
+  if (dataTheme === "light") return "light"
+
+  // 2. localStorage
+  let lsResult: string | null = null
+  try {
+    for (const key of ["streamlit:activeTheme", "streamlit:theme", "stTheme"]) {
+      const raw = localStorage.getItem(key)
+      log[`localStorage[${key}]`] = raw
+      if (!raw) continue
+      const parsed = JSON.parse(raw)
+      const base = (parsed?.base ?? parsed?.name ?? "").toLowerCase()
+      if (base.includes("dark")) { lsResult = "dark"; break }
+      if (base.includes("light")) { lsResult = "light"; break }
+    }
+  } catch {}
+  if (lsResult) return lsResult as "dark" | "light"
+
+  // 3. CSS background-color / custom property scan
+  const cssCandidates: [string, HTMLElement | null][] = [
+    ["--background-color css var", null],
+    ["stApp", document.querySelector<HTMLElement>("[data-testid='stApp']")],
+    ["stAppViewContainer", document.querySelector<HTMLElement>("[data-testid='stAppViewContainer']")],
+    ["body", document.body],
+    ["html", document.documentElement],
+  ]
+
+  const cssVarBg = getCSSVar("--background-color")
+  log["--background-color"] = cssVarBg
+  if (cssVarBg) {
+    const lum = parseLuminance(cssVarBg) ?? (cssVarBg.includes("#") ? null : null)
+    // hex check
+    const hexM = cssVarBg.match(/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})/i)
+    if (hexM) {
+      const l = 0.299 * parseInt(hexM[1],16) + 0.587 * parseInt(hexM[2],16) + 0.114 * parseInt(hexM[3],16)
+      log["--background-color lum"] = l
+      console.log("[chatbar-media theme]", log)
+      return l < 128 ? "dark" : "light"
+    }
+    if (lum !== null) {
+      log["--background-color lum"] = lum
+      console.log("[chatbar-media theme]", log)
+      return lum < 128 ? "dark" : "light"
+    }
+  }
+
+  for (const [label, el] of cssCandidates.slice(1)) {
+    if (!el) { log[label] = "not found"; continue }
+    const bg = getComputedStyle(el).backgroundColor
+    const lum = parseLuminance(bg)
+    log[label] = { bg, lum }
+    if (lum !== null) {
+      console.log("[chatbar-media theme]", log)
+      return lum < 128 ? "dark" : "light"
+    }
+  }
+
+  // 4. OS preference
+  const osDark = window.matchMedia("(prefers-color-scheme: dark)").matches
+  log["OS dark"] = osDark
+  console.log("[chatbar-media theme]", log)
+  return osDark ? "dark" : "light"
+}
+
+function detectTheme(): CBTheme {
+  const mode = getBaseMode()
+  const defaults = mode === "dark" ? THEME_DARK : THEME_LIGHT
+
+  const primary     = getCSSVar("--primary-color")
+  const bg          = getCSSVar("--background-color")
+  const secondaryBg = getCSSVar("--secondary-background-color")
+  const text        = getCSSVar("--text-color")
+
+  return {
+    primary:     primary     || defaults.primary,
+    bg:          bg          || defaults.bg,
+    secondaryBg: secondaryBg || defaults.secondaryBg,
+    text:        text        || defaults.text,
+  }
+}
+
+function useStreamlitTheme(): CBTheme {
+  const [theme, setTheme] = useState<CBTheme>(detectTheme)
+
+  useEffect(() => {
+    const refresh = () => setTheme(detectTheme())
+
+    const timers = [50, 150, 300, 600, 1200, 2500].map((ms) => setTimeout(refresh, ms))
+
+    const observer = new MutationObserver(refresh)
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class", "style", "data-theme", "color-scheme"],
+    })
+    const appEl = document.querySelector("[data-testid='stApp']")
+    if (appEl) observer.observe(appEl, { attributes: true })
+    observer.observe(document.head, { childList: true, subtree: true, characterData: true })
+
+    return () => {
+      timers.forEach(clearTimeout)
+      observer.disconnect()
+    }
+  }, [])
+
+  return theme
+}
+// ─────────────────────────────────────────────────────────────────────────────
 
 function encodeWav(samples: Float32Array, sampleRate: number): Blob {
   const pcm = floatTo16BitPCM(samples)
@@ -136,6 +278,14 @@ const MediaChatbarUI: React.FC<{
   responsive?: boolean
   onSubmit: (payload: SubmitPayload) => void
 }> = ({ placeholder, responsive, disabled, onSubmit }) => {
+  const cbTheme = useStreamlitTheme()
+  const themeStyle = {
+    "--cb-primary":      cbTheme.primary,
+    "--cb-bg":           cbTheme.bg,
+    "--cb-secondary-bg": cbTheme.secondaryBg,
+    "--cb-text":         cbTheme.text,
+  } as React.CSSProperties
+
   const [inputText, setInputText] = useState<string>("")
   const [isRecording, setIsRecording] = useState<boolean>(false)
   const textAreaRef = useRef<HTMLTextAreaElement>(null)
@@ -426,7 +576,7 @@ const MediaChatbarUI: React.FC<{
   }
 
   return (
-      <div className={responsive ? "cbm-responsive" : "cbm-nonresponsive"}>
+      <div className={responsive ? "cbm-responsive" : "cbm-nonresponsive"} style={themeStyle}>
         <div className="chat-container">
         <button className="icon-btn-photo" onClick={openPhotoPopup} disabled={disabled}>
           <AddIcon />

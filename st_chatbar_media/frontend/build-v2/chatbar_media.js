@@ -30974,7 +30974,7 @@ body {\r
     padding: 8px 8px;\r
     box-sizing: border-box;\r
 \r
-    background: var(--secondary-background-color, rgba(240, 242, 246, 1));\r
+    background: var(--cb-secondary-bg, #f0f2f6);\r
     backdrop-filter: blur(10px);\r
     border-radius: 30px;\r
     justify-content: space-between;\r
@@ -30991,13 +30991,13 @@ body {\r
 \r
 .chat-input {\r
     border: none;\r
-    background: color-mix(in srgb, var(--background-color, white) 30%, transparent);\r
+    background: color-mix(in srgb, var(--cb-bg, white) 30%, transparent);\r
     backdrop-filter: blur(6px);\r
     border-radius: 20px;\r
     padding: 10px;\r
     outline: none;\r
     font-size: 18px;\r
-    color: var(--text-color, black);\r
+    color: var(--cb-text, #31333f);\r
     flex-grow: 2;\r
     margin-right: 10px;\r
     margin-left: 10px;\r
@@ -31010,12 +31010,12 @@ body {\r
 }\r
 \r
 .chat-input::placeholder {\r
-    color: var(--text-color, rgba(0, 0, 0, 0.7));\r
+    color: var(--cb-text, #31333f);\r
     opacity: 0.6;\r
 }\r
 \r
 .icon-btn-audio, .icon-btn-photo {\r
-    background: var(--primary-color, rgb(43, 108, 176));\r
+    background: var(--cb-primary, #ff4b4b);\r
     border: none;\r
     border-radius: 50%;\r
     color: white;\r
@@ -31031,8 +31031,8 @@ body {\r
 }\r
 \r
 .icon-btn-audio:hover, .icon-btn-photo:hover {\r
-    background: color-mix(in srgb, var(--primary-color, rgb(43, 108, 176)) 80%, black);\r
-    box-shadow: 0 8px 20px color-mix(in srgb, var(--primary-color, rgb(43, 108, 176)) 40%, transparent);\r
+    background: color-mix(in srgb, var(--cb-primary, #ff4b4b) 80%, black);\r
+    box-shadow: 0 8px 20px color-mix(in srgb, var(--cb-primary, #ff4b4b) 40%, transparent);\r
 }\r
 \r
 .icon-btn-audio:active, .icon-btn-photo:active {\r
@@ -31069,8 +31069,8 @@ body {\r
     overflow: auto;\r
     position: relative;\r
            \r
-    background: var(--background-color, rgba(255,255,255,0.95));\r
-    border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);\r
+    background: var(--cb-bg, #ffffff);\r
+    border: 1px solid color-mix(in srgb, var(--cb-text, #31333f) 12%, transparent);\r
     border-radius: 16px;\r
     box-shadow: 0 20px 60px rgba(0,0,0,0.35);\r
            \r
@@ -31082,7 +31082,7 @@ body {\r
     letter-spacing: 0.2px;\r
     padding-right: 56px;\r
     padding-bottom: 10px;\r
-    color: var(--text-color, black);\r
+    color: var(--cb-text, #31333f);\r
 }\r
            \r
 .photo-popup-header {\r
@@ -31093,9 +31093,9 @@ body {\r
     top: 12px;\r
     right: 12px;\r
    \r
-    border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);\r
-    background: color-mix(in srgb, var(--background-color, white) 80%, transparent);\r
-    color: var(--text-color, black);\r
+    border: 1px solid color-mix(in srgb, var(--cb-text, #31333f) 12%, transparent);\r
+    background: color-mix(in srgb, var(--cb-bg, white) 80%, transparent);\r
+    color: var(--cb-text, #31333f);\r
     border-radius: 10px;\r
 \r
     width: 36px;\r
@@ -31109,7 +31109,7 @@ body {\r
 }\r
            \r
 .photo-popup-close:hover{\r
-    background: var(--background-color, white);\r
+    background: var(--cb-bg, white);\r
 }\r
            \r
 .photo-popup-modes{\r
@@ -31122,21 +31122,21 @@ body {\r
 .mode-btn {\r
     padding: 12px 12px;\r
     border-radius: 12px;\r
-    border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);\r
-    background: color-mix(in srgb, var(--background-color, white) 75%, transparent);\r
-    color: var(--text-color, black);\r
+    border: 1px solid color-mix(in srgb, var(--cb-text, #31333f) 12%, transparent);\r
+    background: color-mix(in srgb, var(--cb-bg, white) 75%, transparent);\r
+    color: var(--cb-text, #31333f);\r
     cursor: pointer;\r
     font-weight: 600;\r
     font-size: 14px;\r
 }\r
            \r
 .mode-btn:hover{\r
-    background: var(--background-color, white);\r
+    background: var(--cb-bg, white);\r
 }\r
 \r
 .mode-btn-active{\r
-    border: 2px solid var(--primary-color, rgba(37,99,235,0.9));\r
-    background: color-mix(in srgb, var(--primary-color, #2563eb) 10%, var(--background-color, white));\r
+    border: 2px solid var(--cb-primary, #ff4b4b);\r
+    background: color-mix(in srgb, var(--cb-primary, #ff4b4b) 10%, var(--cb-bg, white));\r
 }\r
 \r
 .photo-error{\r
@@ -31154,15 +31154,15 @@ width: 100%;\r
 padding: 12px 14px;\r
 border-radius: 12px;\r
 \r
-border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);\r
-background: color-mix(in srgb, var(--background-color, white) 85%, transparent);\r
-color: var(--text-color, black);\r
+border: 1px solid color-mix(in srgb, var(--cb-text, #31333f) 12%, transparent);\r
+background: color-mix(in srgb, var(--cb-bg, white) 85%, transparent);\r
+color: var(--cb-text, #31333f);\r
 cursor: pointer;\r
 font-weight: 600;\r
 }\r
 \r
 .choose-file-btn:hover{\r
-background: var(--background-color, white);\r
+background: var(--cb-bg, white);\r
 }\r
 \r
 /* Camera select + preview */\r
@@ -31170,9 +31170,9 @@ background: var(--background-color, white);\r
 width: 100%;\r
 padding: 10px 12px;\r
 border-radius: 12px;\r
-border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);\r
-background: color-mix(in srgb, var(--background-color, white) 85%, transparent);\r
-color: var(--text-color, black);\r
+border: 1px solid color-mix(in srgb, var(--cb-text, #31333f) 12%, transparent);\r
+background: color-mix(in srgb, var(--cb-bg, white) 85%, transparent);\r
+color: var(--cb-text, #31333f);\r
 margin-bottom: 10px;\r
 }\r
 \r
@@ -31198,19 +31198,19 @@ padding: 12px 12px;\r
 border-radius: 12px;\r
 cursor: pointer;\r
 font-weight: 700;\r
-border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);\r
-background: color-mix(in srgb, var(--background-color, white) 85%, transparent);\r
-color: var(--text-color, black);\r
+border: 1px solid color-mix(in srgb, var(--cb-text, #31333f) 12%, transparent);\r
+background: color-mix(in srgb, var(--cb-bg, white) 85%, transparent);\r
+color: var(--cb-text, #31333f);\r
 }\r
 \r
 .camera-capture{\r
-border: 1px solid var(--primary-color, rgba(37,99,235,0.45));\r
-background: var(--primary-color, rgba(37,99,235,0.95));\r
+border: 1px solid var(--cb-primary, #ff4b4b);\r
+background: var(--cb-primary, #ff4b4b);\r
 color: white;\r
 }\r
 \r
 .camera-cancel:hover{\r
-background: var(--background-color, white);\r
+background: var(--cb-bg, white);\r
 }\r
 \r
 .camera-capture:hover{\r
@@ -31303,13 +31303,18 @@ grid-template-columns: 1fr;\r
 `;
 
 // src/ChatbarMedia.tsx
+var STYLE_VERSION = String(chatbar_media_default.length);
 function ensureStyles(mountEl) {
   const STYLE_ID = "chatbar-media-inline-style";
   const root = mountEl.getRootNode();
   const existing = root instanceof ShadowRoot ? root.getElementById?.(STYLE_ID) ?? root.querySelector(`#${STYLE_ID}`) : document.getElementById(STYLE_ID);
-  if (existing) return;
+  if (existing) {
+    if (existing.getAttribute("data-v") === STYLE_VERSION) return;
+    existing.remove();
+  }
   const style3 = document.createElement("style");
   style3.id = STYLE_ID;
+  style3.setAttribute("data-v", STYLE_VERSION);
   style3.textContent = chatbar_media_default;
   if (root instanceof ShadowRoot) {
     root.appendChild(style3);
@@ -31337,6 +31342,120 @@ function floatTo16BitPCM(float32Array) {
     output[i] = s < 0 ? s * 32768 : s * 32767;
   }
   return output;
+}
+var THEME_LIGHT = { primary: "#ff4b4b", bg: "#ffffff", secondaryBg: "#f0f2f6", text: "#31333f" };
+var THEME_DARK = { primary: "#ff4b4b", bg: "#0e1117", secondaryBg: "#262730", text: "#fafafa" };
+function getCSSVar(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+function parseLuminance(colorStr) {
+  const m = colorStr.match(/rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:\s*,\s*([\d.]+))?/);
+  if (!m) return null;
+  const alpha2 = m[4] !== void 0 ? parseFloat(m[4]) : 1;
+  if (alpha2 < 0.05) return null;
+  return 0.299 * +m[1] + 0.587 * +m[2] + 0.114 * +m[3];
+}
+function getBaseMode() {
+  const log = {};
+  const dataTheme = document.documentElement.getAttribute("data-theme") ?? document.querySelector("[data-testid='stApp']")?.getAttribute("data-theme");
+  log["data-theme"] = dataTheme;
+  if (dataTheme === "dark") return "dark";
+  if (dataTheme === "light") return "light";
+  let lsResult = null;
+  try {
+    for (const key of ["streamlit:activeTheme", "streamlit:theme", "stTheme"]) {
+      const raw = localStorage.getItem(key);
+      log[`localStorage[${key}]`] = raw;
+      if (!raw) continue;
+      const parsed = JSON.parse(raw);
+      const base = (parsed?.base ?? parsed?.name ?? "").toLowerCase();
+      if (base.includes("dark")) {
+        lsResult = "dark";
+        break;
+      }
+      if (base.includes("light")) {
+        lsResult = "light";
+        break;
+      }
+    }
+  } catch {
+  }
+  if (lsResult) return lsResult;
+  const cssCandidates = [
+    ["--background-color css var", null],
+    ["stApp", document.querySelector("[data-testid='stApp']")],
+    ["stAppViewContainer", document.querySelector("[data-testid='stAppViewContainer']")],
+    ["body", document.body],
+    ["html", document.documentElement]
+  ];
+  const cssVarBg = getCSSVar("--background-color");
+  log["--background-color"] = cssVarBg;
+  if (cssVarBg) {
+    const lum = parseLuminance(cssVarBg) ?? (cssVarBg.includes("#") ? null : null);
+    const hexM = cssVarBg.match(/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})/i);
+    if (hexM) {
+      const l = 0.299 * parseInt(hexM[1], 16) + 0.587 * parseInt(hexM[2], 16) + 0.114 * parseInt(hexM[3], 16);
+      log["--background-color lum"] = l;
+      console.log("[chatbar-media theme]", log);
+      return l < 128 ? "dark" : "light";
+    }
+    if (lum !== null) {
+      log["--background-color lum"] = lum;
+      console.log("[chatbar-media theme]", log);
+      return lum < 128 ? "dark" : "light";
+    }
+  }
+  for (const [label, el] of cssCandidates.slice(1)) {
+    if (!el) {
+      log[label] = "not found";
+      continue;
+    }
+    const bg = getComputedStyle(el).backgroundColor;
+    const lum = parseLuminance(bg);
+    log[label] = { bg, lum };
+    if (lum !== null) {
+      console.log("[chatbar-media theme]", log);
+      return lum < 128 ? "dark" : "light";
+    }
+  }
+  const osDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  log["OS dark"] = osDark;
+  console.log("[chatbar-media theme]", log);
+  return osDark ? "dark" : "light";
+}
+function detectTheme() {
+  const mode = getBaseMode();
+  const defaults = mode === "dark" ? THEME_DARK : THEME_LIGHT;
+  const primary = getCSSVar("--primary-color");
+  const bg = getCSSVar("--background-color");
+  const secondaryBg = getCSSVar("--secondary-background-color");
+  const text = getCSSVar("--text-color");
+  return {
+    primary: primary || defaults.primary,
+    bg: bg || defaults.bg,
+    secondaryBg: secondaryBg || defaults.secondaryBg,
+    text: text || defaults.text
+  };
+}
+function useStreamlitTheme() {
+  const [theme, setTheme] = (0, import_react4.useState)(detectTheme);
+  (0, import_react4.useEffect)(() => {
+    const refresh = () => setTheme(detectTheme());
+    const timers = [50, 150, 300, 600, 1200, 2500].map((ms) => setTimeout(refresh, ms));
+    const observer = new MutationObserver(refresh);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class", "style", "data-theme", "color-scheme"]
+    });
+    const appEl = document.querySelector("[data-testid='stApp']");
+    if (appEl) observer.observe(appEl, { attributes: true });
+    observer.observe(document.head, { childList: true, subtree: true, characterData: true });
+    return () => {
+      timers.forEach(clearTimeout);
+      observer.disconnect();
+    };
+  }, []);
+  return theme;
 }
 function encodeWav(samples, sampleRate) {
   const pcm = floatTo16BitPCM(samples);
@@ -31367,6 +31486,13 @@ function encodeWav(samples, sampleRate) {
   return new Blob([buffer], { type: "audio/wav" });
 }
 var MediaChatbarUI = ({ placeholder, responsive, disabled, onSubmit }) => {
+  const cbTheme = useStreamlitTheme();
+  const themeStyle = {
+    "--cb-primary": cbTheme.primary,
+    "--cb-bg": cbTheme.bg,
+    "--cb-secondary-bg": cbTheme.secondaryBg,
+    "--cb-text": cbTheme.text
+  };
   const [inputText, setInputText] = (0, import_react4.useState)("");
   const [isRecording, setIsRecording] = (0, import_react4.useState)(false);
   const textAreaRef = (0, import_react4.useRef)(null);
@@ -31602,7 +31728,7 @@ var MediaChatbarUI = ({ placeholder, responsive, disabled, onSubmit }) => {
     onSubmit({ imageFile: bytes, imageMime: "image/jpeg" });
     closePhotoPopup();
   };
-  return /* @__PURE__ */ import_react4.default.createElement("div", { className: responsive ? "cbm-responsive" : "cbm-nonresponsive" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "chat-container" }, /* @__PURE__ */ import_react4.default.createElement("button", { className: "icon-btn-photo", onClick: openPhotoPopup, disabled }, /* @__PURE__ */ import_react4.default.createElement(Add_default, null)), /* @__PURE__ */ import_react4.default.createElement(
+  return /* @__PURE__ */ import_react4.default.createElement("div", { className: responsive ? "cbm-responsive" : "cbm-nonresponsive", style: themeStyle }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "chat-container" }, /* @__PURE__ */ import_react4.default.createElement("button", { className: "icon-btn-photo", onClick: openPhotoPopup, disabled }, /* @__PURE__ */ import_react4.default.createElement(Add_default, null)), /* @__PURE__ */ import_react4.default.createElement(
     "textarea",
     {
       ref: textAreaRef,

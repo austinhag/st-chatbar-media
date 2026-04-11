@@ -24,7 +24,7 @@ body {
     padding: 8px 8px;
     box-sizing: border-box;
 
-    background: var(--secondary-background-color, rgba(240, 242, 246, 1));
+    background: var(--cb-secondary-bg, #f0f2f6);
     backdrop-filter: blur(10px);
     border-radius: 30px;
     justify-content: space-between;
@@ -41,13 +41,13 @@ body {
 
 .chat-input {
     border: none;
-    background: color-mix(in srgb, var(--background-color, white) 30%, transparent);
+    background: color-mix(in srgb, var(--cb-bg, white) 30%, transparent);
     backdrop-filter: blur(6px);
     border-radius: 20px;
     padding: 10px;
     outline: none;
     font-size: 18px;
-    color: var(--text-color, black);
+    color: var(--cb-text, #31333f);
     flex-grow: 2;
     margin-right: 10px;
     margin-left: 10px;
@@ -60,12 +60,12 @@ body {
 }
 
 .chat-input::placeholder {
-    color: var(--text-color, rgba(0, 0, 0, 0.7));
+    color: var(--cb-text, #31333f);
     opacity: 0.6;
 }
 
 .icon-btn-audio, .icon-btn-photo {
-    background: var(--primary-color, rgb(43, 108, 176));
+    background: var(--cb-primary, #ff4b4b);
     border: none;
     border-radius: 50%;
     color: white;
@@ -81,8 +81,8 @@ body {
 }
 
 .icon-btn-audio:hover, .icon-btn-photo:hover {
-    background: color-mix(in srgb, var(--primary-color, rgb(43, 108, 176)) 80%, black);
-    box-shadow: 0 8px 20px color-mix(in srgb, var(--primary-color, rgb(43, 108, 176)) 40%, transparent);
+    background: color-mix(in srgb, var(--cb-primary, #ff4b4b) 80%, black);
+    box-shadow: 0 8px 20px color-mix(in srgb, var(--cb-primary, #ff4b4b) 40%, transparent);
 }
 
 .icon-btn-audio:active, .icon-btn-photo:active {
@@ -119,8 +119,8 @@ body {
     overflow: auto;
     position: relative;
            
-    background: var(--background-color, rgba(255,255,255,0.95));
-    border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);
+    background: var(--cb-bg, #ffffff);
+    border: 1px solid color-mix(in srgb, var(--cb-text, #31333f) 12%, transparent);
     border-radius: 16px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.35);
            
@@ -132,7 +132,7 @@ body {
     letter-spacing: 0.2px;
     padding-right: 56px;
     padding-bottom: 10px;
-    color: var(--text-color, black);
+    color: var(--cb-text, #31333f);
 }
            
 .photo-popup-header {
@@ -143,9 +143,9 @@ body {
     top: 12px;
     right: 12px;
    
-    border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);
-    background: color-mix(in srgb, var(--background-color, white) 80%, transparent);
-    color: var(--text-color, black);
+    border: 1px solid color-mix(in srgb, var(--cb-text, #31333f) 12%, transparent);
+    background: color-mix(in srgb, var(--cb-bg, white) 80%, transparent);
+    color: var(--cb-text, #31333f);
     border-radius: 10px;
 
     width: 36px;
@@ -159,7 +159,7 @@ body {
 }
            
 .photo-popup-close:hover{
-    background: var(--background-color, white);
+    background: var(--cb-bg, white);
 }
            
 .photo-popup-modes{
@@ -172,21 +172,21 @@ body {
 .mode-btn {
     padding: 12px 12px;
     border-radius: 12px;
-    border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);
-    background: color-mix(in srgb, var(--background-color, white) 75%, transparent);
-    color: var(--text-color, black);
+    border: 1px solid color-mix(in srgb, var(--cb-text, #31333f) 12%, transparent);
+    background: color-mix(in srgb, var(--cb-bg, white) 75%, transparent);
+    color: var(--cb-text, #31333f);
     cursor: pointer;
     font-weight: 600;
     font-size: 14px;
 }
            
 .mode-btn:hover{
-    background: var(--background-color, white);
+    background: var(--cb-bg, white);
 }
 
 .mode-btn-active{
-    border: 2px solid var(--primary-color, rgba(37,99,235,0.9));
-    background: color-mix(in srgb, var(--primary-color, #2563eb) 10%, var(--background-color, white));
+    border: 2px solid var(--cb-primary, #ff4b4b);
+    background: color-mix(in srgb, var(--cb-primary, #ff4b4b) 10%, var(--cb-bg, white));
 }
 
 .photo-error{
@@ -204,15 +204,15 @@ width: 100%;
 padding: 12px 14px;
 border-radius: 12px;
 
-border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);
-background: color-mix(in srgb, var(--background-color, white) 85%, transparent);
-color: var(--text-color, black);
+border: 1px solid color-mix(in srgb, var(--cb-text, #31333f) 12%, transparent);
+background: color-mix(in srgb, var(--cb-bg, white) 85%, transparent);
+color: var(--cb-text, #31333f);
 cursor: pointer;
 font-weight: 600;
 }
 
 .choose-file-btn:hover{
-background: var(--background-color, white);
+background: var(--cb-bg, white);
 }
 
 /* Camera select + preview */
@@ -220,9 +220,9 @@ background: var(--background-color, white);
 width: 100%;
 padding: 10px 12px;
 border-radius: 12px;
-border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);
-background: color-mix(in srgb, var(--background-color, white) 85%, transparent);
-color: var(--text-color, black);
+border: 1px solid color-mix(in srgb, var(--cb-text, #31333f) 12%, transparent);
+background: color-mix(in srgb, var(--cb-bg, white) 85%, transparent);
+color: var(--cb-text, #31333f);
 margin-bottom: 10px;
 }
 
@@ -248,19 +248,19 @@ padding: 12px 12px;
 border-radius: 12px;
 cursor: pointer;
 font-weight: 700;
-border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);
-background: color-mix(in srgb, var(--background-color, white) 85%, transparent);
-color: var(--text-color, black);
+border: 1px solid color-mix(in srgb, var(--cb-text, #31333f) 12%, transparent);
+background: color-mix(in srgb, var(--cb-bg, white) 85%, transparent);
+color: var(--cb-text, #31333f);
 }
 
 .camera-capture{
-border: 1px solid var(--primary-color, rgba(37,99,235,0.45));
-background: var(--primary-color, rgba(37,99,235,0.95));
+border: 1px solid var(--cb-primary, #ff4b4b);
+background: var(--cb-primary, #ff4b4b);
 color: white;
 }
 
 .camera-cancel:hover{
-background: var(--background-color, white);
+background: var(--cb-bg, white);
 }
 
 .camera-capture:hover{
