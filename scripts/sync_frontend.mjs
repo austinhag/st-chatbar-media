@@ -10,10 +10,10 @@ copyFileSync(src, dst)
 console.log(`Synced ${src} -> ${dst}`)
 
 
-const src_css = join("build-v2", "chatbar_media.css")
-const dstDir_css = join("..","st_chatbar_media", "frontend", "build-v2")
-const dst_css = join(dstDir_css, "chatbar_media.css")
+// CSS is bundled as text inside the JS bundle (--loader:.css=text).
+// Copy the source CSS directly so the Python package always has it available.
+const src_css = join("src", "chatbar_media.css")
+const dst_css = join(dstDir, "chatbar_media.css")
 
-mkdirSync(dstDir_css, { recursive: true })
 copyFileSync(src_css, dst_css)
 console.log(`Synced ${src_css} -> ${dst_css}`)

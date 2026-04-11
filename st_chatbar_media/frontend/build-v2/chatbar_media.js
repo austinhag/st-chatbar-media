@@ -30974,7 +30974,7 @@ body {\r
     padding: 8px 8px;\r
     box-sizing: border-box;\r
 \r
-    background: rgba(240, 242, 246, 1);\r
+    background: var(--secondary-background-color, rgba(240, 242, 246, 1));\r
     backdrop-filter: blur(10px);\r
     border-radius: 30px;\r
     justify-content: space-between;\r
@@ -30991,13 +30991,13 @@ body {\r
 \r
 .chat-input {\r
     border: none;\r
-    background: rgba(255, 255, 255, 0.2);\r
+    background: color-mix(in srgb, var(--background-color, white) 30%, transparent);\r
     backdrop-filter: blur(6px);\r
     border-radius: 20px;\r
     padding: 10px;\r
     outline: none;\r
     font-size: 18px;\r
-    color: black;\r
+    color: var(--text-color, black);\r
     flex-grow: 2;\r
     margin-right: 10px;\r
     margin-left: 10px;\r
@@ -31010,11 +31010,12 @@ body {\r
 }\r
 \r
 .chat-input::placeholder {\r
-    color: rgba(0, 0, 0, 0.7);\r
+    color: var(--text-color, rgba(0, 0, 0, 0.7));\r
+    opacity: 0.6;\r
 }\r
 \r
 .icon-btn-audio, .icon-btn-photo {\r
-    background: linear-gradient(90deg, rgb(43, 108, 176) 0%, rgb(49, 130, 206) 100%);\r
+    background: var(--primary-color, rgb(43, 108, 176));\r
     border: none;\r
     border-radius: 50%;\r
     color: white;\r
@@ -31030,8 +31031,8 @@ body {\r
 }\r
 \r
 .icon-btn-audio:hover, .icon-btn-photo:hover {\r
-    background: linear-gradient(145deg, #ff66b2, #eb0451);\r
-    box-shadow: 0 8px 20px rgba(255, 102, 178, 0.4);\r
+    background: color-mix(in srgb, var(--primary-color, rgb(43, 108, 176)) 80%, black);\r
+    box-shadow: 0 8px 20px color-mix(in srgb, var(--primary-color, rgb(43, 108, 176)) 40%, transparent);\r
 }\r
 \r
 .icon-btn-audio:active, .icon-btn-photo:active {\r
@@ -31068,8 +31069,8 @@ body {\r
     overflow: auto;\r
     position: relative;\r
            \r
-    background: rgba(255,255,255,0.95);\r
-    border: 1px solid rgba(0,0,0,0,0.8);\r
+    background: var(--background-color, rgba(255,255,255,0.95));\r
+    border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);\r
     border-radius: 16px;\r
     box-shadow: 0 20px 60px rgba(0,0,0,0.35);\r
            \r
@@ -31081,6 +31082,7 @@ body {\r
     letter-spacing: 0.2px;\r
     padding-right: 56px;\r
     padding-bottom: 10px;\r
+    color: var(--text-color, black);\r
 }\r
            \r
 .photo-popup-header {\r
@@ -31091,8 +31093,9 @@ body {\r
     top: 12px;\r
     right: 12px;\r
    \r
-    border: 1px solid rgba(0,0,0,0.12);\r
-    background: rgba(255,255,255,0.8);\r
+    border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);\r
+    background: color-mix(in srgb, var(--background-color, white) 80%, transparent);\r
+    color: var(--text-color, black);\r
     border-radius: 10px;\r
 \r
     width: 36px;\r
@@ -31105,8 +31108,8 @@ body {\r
            \r
 }\r
            \r
-.photo-pop-close:hover{\r
-    background: rgba(255,255,255,1);            \r
+.photo-popup-close:hover{\r
+    background: var(--background-color, white);\r
 }\r
            \r
 .photo-popup-modes{\r
@@ -31119,20 +31122,21 @@ body {\r
 .mode-btn {\r
     padding: 12px 12px;\r
     border-radius: 12px;\r
-    border: 1px solid rgba(0,0,0,0.12);\r
-    background: rgba(255,255,255,0.75);\r
+    border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);\r
+    background: color-mix(in srgb, var(--background-color, white) 75%, transparent);\r
+    color: var(--text-color, black);\r
     cursor: pointer;\r
     font-weight: 600;\r
     font-size: 14px;\r
 }\r
            \r
 .mode-btn:hover{\r
-background: rgba(255,255,255,0.95);\r
+    background: var(--background-color, white);\r
 }\r
 \r
 .mode-btn-active{\r
-border: 2px solid rgba(37,99,235,0.9);\r
-background: rgba(239,246,255,0.95);\r
+    border: 2px solid var(--primary-color, rgba(37,99,235,0.9));\r
+    background: color-mix(in srgb, var(--primary-color, #2563eb) 10%, var(--background-color, white));\r
 }\r
 \r
 .photo-error{\r
@@ -31150,14 +31154,15 @@ width: 100%;\r
 padding: 12px 14px;\r
 border-radius: 12px;\r
 \r
-border: 1px solid rgba(0,0,0,0.12);\r
-background: rgba(255,255,255,0.85);\r
+border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);\r
+background: color-mix(in srgb, var(--background-color, white) 85%, transparent);\r
+color: var(--text-color, black);\r
 cursor: pointer;\r
 font-weight: 600;\r
 }\r
 \r
 .choose-file-btn:hover{\r
-background: rgba(255,255,255,1);\r
+background: var(--background-color, white);\r
 }\r
 \r
 /* Camera select + preview */\r
@@ -31165,8 +31170,9 @@ background: rgba(255,255,255,1);\r
 width: 100%;\r
 padding: 10px 12px;\r
 border-radius: 12px;\r
-border: 1px solid rgba(0,0,0,0.12);\r
-background: rgba(255,255,255,0.85);\r
+border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);\r
+background: color-mix(in srgb, var(--background-color, white) 85%, transparent);\r
+color: var(--text-color, black);\r
 margin-bottom: 10px;\r
 }\r
 \r
@@ -31192,18 +31198,19 @@ padding: 12px 12px;\r
 border-radius: 12px;\r
 cursor: pointer;\r
 font-weight: 700;\r
-border: 1px solid rgba(0,0,0,0.12);\r
-background: rgba(255,255,255,0.85);\r
+border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);\r
+background: color-mix(in srgb, var(--background-color, white) 85%, transparent);\r
+color: var(--text-color, black);\r
 }\r
 \r
 .camera-capture{\r
-border: 1px solid rgba(37,99,235,0.45);\r
-background: rgba(37,99,235,0.95);\r
+border: 1px solid var(--primary-color, rgba(37,99,235,0.45));\r
+background: var(--primary-color, rgba(37,99,235,0.95));\r
 color: white;\r
 }\r
 \r
 .camera-cancel:hover{\r
-background: rgba(255,255,255,1);\r
+background: var(--background-color, white);\r
 }\r
 \r
 .camera-capture:hover{\r

@@ -24,7 +24,7 @@ body {
     padding: 8px 8px;
     box-sizing: border-box;
 
-    background: rgba(240, 242, 246, 1);
+    background: var(--secondary-background-color, rgba(240, 242, 246, 1));
     backdrop-filter: blur(10px);
     border-radius: 30px;
     justify-content: space-between;
@@ -41,13 +41,13 @@ body {
 
 .chat-input {
     border: none;
-    background: rgba(255, 255, 255, 0.2);
+    background: color-mix(in srgb, var(--background-color, white) 30%, transparent);
     backdrop-filter: blur(6px);
     border-radius: 20px;
     padding: 10px;
     outline: none;
     font-size: 18px;
-    color: black;
+    color: var(--text-color, black);
     flex-grow: 2;
     margin-right: 10px;
     margin-left: 10px;
@@ -60,11 +60,12 @@ body {
 }
 
 .chat-input::placeholder {
-    color: rgba(0, 0, 0, 0.7);
+    color: var(--text-color, rgba(0, 0, 0, 0.7));
+    opacity: 0.6;
 }
 
 .icon-btn-audio, .icon-btn-photo {
-    background: linear-gradient(90deg, rgb(43, 108, 176) 0%, rgb(49, 130, 206) 100%);
+    background: var(--primary-color, rgb(43, 108, 176));
     border: none;
     border-radius: 50%;
     color: white;
@@ -80,8 +81,8 @@ body {
 }
 
 .icon-btn-audio:hover, .icon-btn-photo:hover {
-    background: linear-gradient(145deg, #ff66b2, #eb0451);
-    box-shadow: 0 8px 20px rgba(255, 102, 178, 0.4);
+    background: color-mix(in srgb, var(--primary-color, rgb(43, 108, 176)) 80%, black);
+    box-shadow: 0 8px 20px color-mix(in srgb, var(--primary-color, rgb(43, 108, 176)) 40%, transparent);
 }
 
 .icon-btn-audio:active, .icon-btn-photo:active {
@@ -118,8 +119,8 @@ body {
     overflow: auto;
     position: relative;
            
-    background: rgba(255,255,255,0.95);
-    border: 1px solid rgba(0,0,0,0,0.8);
+    background: var(--background-color, rgba(255,255,255,0.95));
+    border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);
     border-radius: 16px;
     box-shadow: 0 20px 60px rgba(0,0,0,0.35);
            
@@ -131,6 +132,7 @@ body {
     letter-spacing: 0.2px;
     padding-right: 56px;
     padding-bottom: 10px;
+    color: var(--text-color, black);
 }
            
 .photo-popup-header {
@@ -141,8 +143,9 @@ body {
     top: 12px;
     right: 12px;
    
-    border: 1px solid rgba(0,0,0,0.12);
-    background: rgba(255,255,255,0.8);
+    border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);
+    background: color-mix(in srgb, var(--background-color, white) 80%, transparent);
+    color: var(--text-color, black);
     border-radius: 10px;
 
     width: 36px;
@@ -155,8 +158,8 @@ body {
            
 }
            
-.photo-pop-close:hover{
-    background: rgba(255,255,255,1);            
+.photo-popup-close:hover{
+    background: var(--background-color, white);
 }
            
 .photo-popup-modes{
@@ -169,20 +172,21 @@ body {
 .mode-btn {
     padding: 12px 12px;
     border-radius: 12px;
-    border: 1px solid rgba(0,0,0,0.12);
-    background: rgba(255,255,255,0.75);
+    border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);
+    background: color-mix(in srgb, var(--background-color, white) 75%, transparent);
+    color: var(--text-color, black);
     cursor: pointer;
     font-weight: 600;
     font-size: 14px;
 }
            
 .mode-btn:hover{
-background: rgba(255,255,255,0.95);
+    background: var(--background-color, white);
 }
 
 .mode-btn-active{
-border: 2px solid rgba(37,99,235,0.9);
-background: rgba(239,246,255,0.95);
+    border: 2px solid var(--primary-color, rgba(37,99,235,0.9));
+    background: color-mix(in srgb, var(--primary-color, #2563eb) 10%, var(--background-color, white));
 }
 
 .photo-error{
@@ -200,14 +204,15 @@ width: 100%;
 padding: 12px 14px;
 border-radius: 12px;
 
-border: 1px solid rgba(0,0,0,0.12);
-background: rgba(255,255,255,0.85);
+border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);
+background: color-mix(in srgb, var(--background-color, white) 85%, transparent);
+color: var(--text-color, black);
 cursor: pointer;
 font-weight: 600;
 }
 
 .choose-file-btn:hover{
-background: rgba(255,255,255,1);
+background: var(--background-color, white);
 }
 
 /* Camera select + preview */
@@ -215,8 +220,9 @@ background: rgba(255,255,255,1);
 width: 100%;
 padding: 10px 12px;
 border-radius: 12px;
-border: 1px solid rgba(0,0,0,0.12);
-background: rgba(255,255,255,0.85);
+border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);
+background: color-mix(in srgb, var(--background-color, white) 85%, transparent);
+color: var(--text-color, black);
 margin-bottom: 10px;
 }
 
@@ -242,18 +248,19 @@ padding: 12px 12px;
 border-radius: 12px;
 cursor: pointer;
 font-weight: 700;
-border: 1px solid rgba(0,0,0,0.12);
-background: rgba(255,255,255,0.85);
+border: 1px solid color-mix(in srgb, var(--text-color, black) 12%, transparent);
+background: color-mix(in srgb, var(--background-color, white) 85%, transparent);
+color: var(--text-color, black);
 }
 
 .camera-capture{
-border: 1px solid rgba(37,99,235,0.45);
-background: rgba(37,99,235,0.95);
+border: 1px solid var(--primary-color, rgba(37,99,235,0.45));
+background: var(--primary-color, rgba(37,99,235,0.95));
 color: white;
 }
 
 .camera-cancel:hover{
-background: rgba(255,255,255,1);
+background: var(--background-color, white);
 }
 
 .camera-capture:hover{
