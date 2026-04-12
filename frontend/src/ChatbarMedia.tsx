@@ -302,6 +302,14 @@ const MediaChatbarUI: React.FC<{
   const [showPhotoPopup, setShowPhotoPopup] = useState<boolean>(false)
   const [photoMode, setPhotoMode] = useState<"upload" | "camera">("upload")
   const [cameraError, setCameraError] = useState<string | null>(null)
+  const [isMobile, setIsMobile] = useState(() => window.matchMedia("(max-width: 768px)").matches)
+
+  useEffect(() => {
+    const mq = window.matchMedia("(max-width: 768px)")
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches)
+    mq.addEventListener("change", handler)
+    return () => mq.removeEventListener("change", handler)
+  }, [])
 
   // Upload
   const fileInputRef = useRef<HTMLInputElement>(null)
@@ -613,22 +621,36 @@ const MediaChatbarUI: React.FC<{
               </button>
             </div>
 
-            <div className="photo-popup-modes">
-              <button
-                type="button"
-                className={photoMode === "upload" ? "mode-btn mode-btn-active" : "mode-btn"}
-                onClick={handleUploadClick}
-              >
-                Upload
-              </button>
-              <button
-                type="button"
-                className={photoMode === "camera" ? "mode-btn mode-btn-active" : "mode-btn"}
-                onClick={handleCameraMode}
-              >
-                Camera
-              </button>
-            </div>
+            {!isMobile && (
+              <div className="photo-popup-modes">
+                <button
+                  type="button"
+                  className={photoMode === "upload" ? "mode-btn mode-btn-active" : "mode-btn"}
+                  onClick={handleUploadClick}
+                >
+                  Upload
+                </button>
+                <button
+                  type="button"
+                  className={photoMode === "camera" ? "mode-btn mode-btn-active" : "mode-btn"}
+                  onClick={handleCameraMode}
+                >
+                  Camera
+                </button>
+              </div>
+            )}
+
+            {isMobile && (
+              <div className="photo-popup-modes">
+                <button
+                  type="button"
+                  className={photoMode === "camera" ? "mode-btn mode-btn-active" : "mode-btn"}
+                  onClick={handleCameraMode}
+                >
+                  Camera
+                </button>
+              </div>
+            )}
 
             {cameraError ? <div className="photo-error">{cameraError}</div> : null}
 
@@ -640,7 +662,7 @@ const MediaChatbarUI: React.FC<{
               onChange={onUploadFileSelected}
             />
 
-            {photoMode === "upload" ? (
+            {(!isMobile && photoMode === "upload") || isMobile ? (
               <button className="choose-file-btn" onClick={() => fileInputRef.current?.click()}>
                 Choose image file
               </button>

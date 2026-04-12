@@ -31065,7 +31065,7 @@ body {\r
 .photo-popup {\r
     width: min(640px, 88vw);\r
     min-height: 30vh;\r
-    max-height: 88vh;\r
+    max-height: min(88vh, 88dvh);\r
     overflow: auto;\r
     position: relative;\r
            \r
@@ -31229,6 +31229,40 @@ grid-template-columns: 1fr;\r
 }\r
 .camera-actions{\r
 grid-template-columns: 1fr;\r
+}\r
+}\r
+\r
+/* Landscape mobile \u2013 compact popup to fit reduced viewport height */\r
+@media (orientation: landscape) and (max-height: 500px) {\r
+.photo-popup-overlay {\r
+    align-items: flex-start;\r
+    padding: 6px;\r
+    overflow-y: auto;\r
+}\r
+.photo-popup {\r
+    width: min(680px, 96vw);\r
+    max-height: calc(100dvh - 12px);\r
+    min-height: unset;\r
+    padding: 10px 12px 12px 12px;\r
+    border-radius: 12px;\r
+}\r
+.photo-popup-header {\r
+    padding-bottom: 4px;\r
+}\r
+.photo-popup-modes {\r
+    grid-template-columns: 1fr 1fr;\r
+    margin: 6px 0 8px 0;\r
+}\r
+.camera-preview {\r
+    max-height: 36vh;\r
+    object-fit: contain;\r
+}\r
+.camera-actions {\r
+    grid-template-columns: 1fr 1fr;\r
+    margin-top: 8px;\r
+}\r
+.mode-btn {\r
+    padding: 8px 12px;\r
 }\r
 }\r
 \r
@@ -31505,6 +31539,13 @@ var MediaChatbarUI = ({ placeholder, responsive, disabled, onSubmit }) => {
   const [showPhotoPopup, setShowPhotoPopup] = (0, import_react4.useState)(false);
   const [photoMode, setPhotoMode] = (0, import_react4.useState)("upload");
   const [cameraError, setCameraError] = (0, import_react4.useState)(null);
+  const [isMobile, setIsMobile] = (0, import_react4.useState)(() => window.matchMedia("(max-width: 768px)").matches);
+  (0, import_react4.useEffect)(() => {
+    const mq = window.matchMedia("(max-width: 768px)");
+    const handler = (e) => setIsMobile(e.matches);
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
   const fileInputRef = (0, import_react4.useRef)(null);
   const [cameras, setCameras] = (0, import_react4.useState)([]);
   const [selectedCamId, setSelectedCamId] = (0, import_react4.useState)("");
@@ -31748,7 +31789,7 @@ var MediaChatbarUI = ({ placeholder, responsive, disabled, onSubmit }) => {
         if (e.target === e.currentTarget) closePhotoPopup();
       }
     },
-    /* @__PURE__ */ import_react4.default.createElement("div", { className: "photo-popup" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "photo-popup-header" }, /* @__PURE__ */ import_react4.default.createElement("strong", { style: { flex: 1 } }, "Add a photo"), /* @__PURE__ */ import_react4.default.createElement("button", { className: "photo-popup-close", onClick: closePhotoPopup }, "\u2715")), /* @__PURE__ */ import_react4.default.createElement("div", { className: "photo-popup-modes" }, /* @__PURE__ */ import_react4.default.createElement(
+    /* @__PURE__ */ import_react4.default.createElement("div", { className: "photo-popup" }, /* @__PURE__ */ import_react4.default.createElement("div", { className: "photo-popup-header" }, /* @__PURE__ */ import_react4.default.createElement("strong", { style: { flex: 1 } }, "Add a photo"), /* @__PURE__ */ import_react4.default.createElement("button", { className: "photo-popup-close", onClick: closePhotoPopup }, "\u2715")), !isMobile && /* @__PURE__ */ import_react4.default.createElement("div", { className: "photo-popup-modes" }, /* @__PURE__ */ import_react4.default.createElement(
       "button",
       {
         type: "button",
@@ -31757,6 +31798,14 @@ var MediaChatbarUI = ({ placeholder, responsive, disabled, onSubmit }) => {
       },
       "Upload"
     ), /* @__PURE__ */ import_react4.default.createElement(
+      "button",
+      {
+        type: "button",
+        className: photoMode === "camera" ? "mode-btn mode-btn-active" : "mode-btn",
+        onClick: handleCameraMode
+      },
+      "Camera"
+    )), isMobile && /* @__PURE__ */ import_react4.default.createElement("div", { className: "photo-popup-modes" }, /* @__PURE__ */ import_react4.default.createElement(
       "button",
       {
         type: "button",
@@ -31773,7 +31822,7 @@ var MediaChatbarUI = ({ placeholder, responsive, disabled, onSubmit }) => {
         style: { display: "none" },
         onChange: onUploadFileSelected
       }
-    ), photoMode === "upload" ? /* @__PURE__ */ import_react4.default.createElement("button", { className: "choose-file-btn", onClick: () => fileInputRef.current?.click() }, "Choose image file") : null, photoMode === "camera" && !cameraError ? /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, null, /* @__PURE__ */ import_react4.default.createElement(
+    ), !isMobile && photoMode === "upload" || isMobile ? /* @__PURE__ */ import_react4.default.createElement("button", { className: "choose-file-btn", onClick: () => fileInputRef.current?.click() }, "Choose image file") : null, photoMode === "camera" && !cameraError ? /* @__PURE__ */ import_react4.default.createElement(import_react4.default.Fragment, null, /* @__PURE__ */ import_react4.default.createElement(
       "select",
       {
         value: selectedCamId,

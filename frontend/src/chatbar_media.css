@@ -115,7 +115,7 @@ body {
 .photo-popup {
     width: min(640px, 88vw);
     min-height: 30vh;
-    max-height: 88vh;
+    max-height: min(88vh, 88dvh);
     overflow: auto;
     position: relative;
            
@@ -279,6 +279,40 @@ grid-template-columns: 1fr;
 }
 .camera-actions{
 grid-template-columns: 1fr;
+}
+}
+
+/* Landscape mobile – compact popup to fit reduced viewport height */
+@media (orientation: landscape) and (max-height: 500px) {
+.photo-popup-overlay {
+    align-items: flex-start;
+    padding: 6px;
+    overflow-y: auto;
+}
+.photo-popup {
+    width: min(680px, 96vw);
+    max-height: calc(100dvh - 12px);
+    min-height: unset;
+    padding: 10px 12px 12px 12px;
+    border-radius: 12px;
+}
+.photo-popup-header {
+    padding-bottom: 4px;
+}
+.photo-popup-modes {
+    grid-template-columns: 1fr 1fr;
+    margin: 6px 0 8px 0;
+}
+.camera-preview {
+    max-height: 36vh;
+    object-fit: contain;
+}
+.camera-actions {
+    grid-template-columns: 1fr 1fr;
+    margin-top: 8px;
+}
+.mode-btn {
+    padding: 8px 12px;
 }
 }
 

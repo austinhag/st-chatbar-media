@@ -1,7 +1,7 @@
 {
   "name": "chatbar-media-frontend",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
     "build:v2": "esbuild src/index.tsx --bundle --format=esm --platform=browser --outfile=build-v2/chatbar_media.js --loader:.tsx=tsx --loader:.ts=ts --loader:.css=text",
